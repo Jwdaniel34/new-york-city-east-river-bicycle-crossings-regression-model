@@ -52,12 +52,13 @@ This project uses **Poisson Regression** and **Negative Binomial Regression** to
 ### 🟠 Poisson Regression
 
 ```python
-formula = "Count ~ temp_avg + precip_bin + C(day_of_week) + C(month)"
+formula = "Count ~ temp_avg + precip_bin + C(day_of_week)"
 poisson_mod = smf.glm(formula=formula, data=df, family=sm.families.Poisson()).fit()
 nb_mod = smf.glm(formula=formula, data=df_raw, family=sm.families.NegativeBinomial()).fit()
 ```
 
 Model Summary
+
 | **Metric**                    | **Value**     | **Explanation**                                      |
 |------------------------------|---------------|------------------------------------------------------|
 | **Dependent Variable**       | `Count`       | Daily total bicycle count                            |
@@ -72,4 +73,7 @@ Model Summary
 | **Iterations to Converge**   | 8             | Model fitting converged in 8 steps                   |
 
 
-# Because it had overdispersion I decided to go with Negative Binomial Poisson
+<br>
+
+Because it had Over-dispersion I decided to go with Negative Binomial Poisson and + C(month) there was only one month being shown throughout
+the dates so it will calculate for the month of April
